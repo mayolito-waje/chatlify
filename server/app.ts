@@ -3,17 +3,28 @@ import 'express-async-errors';
 import cors from 'cors';
 import helmet from 'helmet';
 import connectToMongoDB from './utils/db.js';
+import {
+  extractToken,
+  resourceNotFound,
+  errorHandler,
+} from './utils/middlewares.js';
+import usersRouter from './routes/users.js';
 
 const app = express();
 
-connectToMongoDB();
+void connectToMongoDB();
 
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+app.use(extractToken);
 
+app.use('/api/users', usersRouter);
 app.get('/', (_req, res) => {
   res.send('api running');
 });
+
+app.use(resourceNotFound);
+app.use(errorHandler);
 
 export default app;

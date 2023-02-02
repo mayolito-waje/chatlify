@@ -3,7 +3,7 @@ import * as config from './config.js';
 
 mongoose.set('strictQuery', true);
 
-const connectToMongoDB = async () => {
+const connectToMongoDB = async (): Promise<void> => {
   try {
     const conn = await mongoose.connect(config.MONGODB_URI as string);
     console.log('connected to MongoDB: ', conn.connection.host);
