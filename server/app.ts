@@ -9,6 +9,7 @@ import {
   errorHandler,
 } from './utils/middlewares.js';
 import usersRouter from './routes/users.js';
+import testingRouter from './routes/testing.js';
 
 const app = express();
 
@@ -23,6 +24,10 @@ app.use('/api/users', usersRouter);
 app.get('/', (_req, res) => {
   res.send('api running');
 });
+
+if (process.env.NODE_ENV === 'test') {
+  app.use('/api/testing', testingRouter);
+}
 
 app.use(resourceNotFound);
 app.use(errorHandler);

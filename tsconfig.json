@@ -7,7 +7,5 @@
     "strict": true,
     "skipLibCheck": true,
     "moduleResolution": "node"
-  },
-  "include": ["/**/*.ts"],
-  "exclude": ["node_modules"]
+  }
 }
