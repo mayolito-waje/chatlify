@@ -1,11 +1,12 @@
-import type Express from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import * as config from './config.js';
+import type { DecodedUser } from '../types/index.js';
 
 export const extractToken = (
-  req: Express.Request,
-  res: Express.Response,
-  next: Express.NextFunction
+  req: Request,
+  _res: Response,
+  next: NextFunction
 ): void => {
   const authorization = req.get('authorization');
 
@@ -18,9 +19,9 @@ export const extractToken = (
 };
 
 export const extractUser = (
-  req: Express.Request,
-  res: Express.Response,
-  next: Express.NextFunction
+  req: Request,
+  _res: Response,
+  next: NextFunction
 ): any => {
   const { token } = req;
   if (token === undefined) {
@@ -33,13 +34,11 @@ export const extractUser = (
     config.JWT_SECRET as 'Secret | GetPublicKeyOrSecret'
   );
 
-  console.log(decodedToken);
+  req.user = decodedToken as DecodedUser;
+  next();
 };
 
-export const resourceNotFound = (
-  req: Express.Request,
-  res: Express.Response
-): any =>
+export const resourceNotFound = (_req: Request, res: Response): any =>
   res.status(404).json({
     error: 'Resource Not Found',
     status: 404,
@@ -47,9 +46,9 @@ export const resourceNotFound = (
 
 export const errorHandler = (
   err: Error,
-  req: Express.Request,
-  res: Express.Response,
-  next: Express.NextFunction
+  _req: Request,
+  res: Response,
+  next: NextFunction
 ): any => {
   console.error('Error: ', err.message);
 

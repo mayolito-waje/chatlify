@@ -1,13 +1,13 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-import type Express from 'express';
+import jwt from 'jsonwebtoken';
+import _ from 'lodash';
+import type { Request, Response } from 'express';
 import User from '../models/user.js';
-import type { RequestUser } from '../types/index.js';
+import type { RequestUser, LoginUser } from '../types/index.js';
+import * as config from '../utils/config.js';
 
-export const getUsers = async (
-  req: Express.Request,
-  res: Express.Response
-): Promise<void> => {
+export const getUsers = async (req: Request, res: Response): Promise<void> => {
   const keyword =
     req.query.search !== undefined
       ? {
@@ -26,8 +26,8 @@ export const getUsers = async (
 };
 
 export const registerUser = async (
-  req: Express.Request,
-  res: Express.Response
+  req: Request,
+  res: Response
 ): Promise<any> => {
   const { name, email, picture, password }: RequestUser = req.body;
 
@@ -49,4 +49,37 @@ export const registerUser = async (
   const createdUser = await newUser.save();
 
   res.status(201).json(createdUser);
+};
+
+export const loginUser = async (req: Request, res: Response): Promise<any> => {
+  const { email, password }: LoginUser = req.body;
+
+  const user = await User.findOne({ email });
+
+  const isPasswordMatched: boolean = _.isNull(user)
+    ? false
+    : await bcrypt.compare(password, user?.passwordHash);
+
+  if (!isPasswordMatched) {
+    return res.status(401).json({
+      error: 'email or password not matched',
+    });
+  }
+
+  const token = jwt.sign(
+    {
+      id: user?._id,
+      name: user?.name,
+      email: user?.email,
+    },
+    config.JWT_SECRET as 'Secret',
+    { expiresIn: '30d' }
+  );
+
+  return res.json({
+    token,
+    name: user?.name,
+    email: user?.email,
+    id: user?.id.toString(),
+  });
 };
