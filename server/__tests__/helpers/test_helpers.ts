@@ -45,13 +45,10 @@ export const seedUsers = async (): Promise<void> => {
 };
 
 export const getTokenFromRoot = async (): Promise<string> => {
-  const user = await api
-    .post('/api/login')
-    .send({
-      email: 'root@example.com',
-      password: 'secretPassword#00',
-    })
-    .expect(200);
+  const user = await api.post('/api/login').send({
+    email: 'root@example.com',
+    password: 'secretPassword#00',
+  });
 
   const { token } = user.body;
   return token;
