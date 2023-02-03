@@ -20,13 +20,13 @@ export const extractToken = (
 
 export const extractUser = (
   req: Request,
-  _res: Response,
+  res: Response,
   next: NextFunction
 ): any => {
   const { token } = req;
   if (token === undefined) {
-    next();
-    return null;
+    res.status(401);
+    throw new Error('token is missing');
   }
 
   const decodedToken = jwt.verify(
@@ -50,8 +50,6 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ): any => {
-  console.error('Error: ', err.message);
-
   if (err.name === 'CastError') {
     return res.status(400).json({ error: 'Malformatted ID' });
   }
@@ -69,5 +67,10 @@ export const errorHandler = (
       .status(400)
       .json({ error: 'email should be unique (email is already taken)' });
   }
-  next(err);
+
+  const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+
+  res.status(statusCode).json({
+    error: err.message,
+  });
 };

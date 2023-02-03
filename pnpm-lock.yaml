@@ -29,6 +29,7 @@ specifiers:
   lodash: ^4.17.21
   mongoose: ^6.9.0
   nodemon: ^2.0.20
+  prettier: ^2.8.3
   supertest: ^6.3.3
   ts-jest: ^29.0.5
   ts-node: ^10.9.1
@@ -65,6 +66,7 @@ devDependencies:
   husky: 8.0.3
   jest: 29.4.1_zfha7dvnw4nti6zkbsmhmn6xo4
   nodemon: 2.0.20
+  prettier: 2.8.3
   supertest: 6.3.3
   ts-jest: 29.0.5_wrz2f4catxnbofknv5bs36jgqa
   ts-node: 10.9.1_bdgp3l2zgaopogaavxusmetvge
@@ -4601,6 +4603,12 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier/2.8.3:
+    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-format/29.4.1:

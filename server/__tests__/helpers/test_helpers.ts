@@ -53,3 +53,8 @@ export const getTokenFromRoot = async (): Promise<string> => {
   const { token } = user.body;
   return token;
 };
+
+export const usersInDB = async (): Promise<any> => {
+  const users = await User.find({});
+  return users.map((user) => user.toJSON());
+};

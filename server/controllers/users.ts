@@ -35,7 +35,7 @@ export const registerUser = async (
   if (!isValidPassword) {
     return res.status(400).json({
       error:
-        'password should contain one: small letter, capital letter, number, and special character',
+        'password requirements: small, capital, and special letter, number, 8 characters long',
     });
   }
 
