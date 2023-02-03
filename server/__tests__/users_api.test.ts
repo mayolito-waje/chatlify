@@ -7,7 +7,7 @@ beforeEach(async () => {
 }, 100000);
 
 describe('fetching users', () => {
-  test('fetch all users except for the logged in user and return json', async () => {
+  it('fetch all users except for the logged in user and return json', async () => {
     const token = await helper.getTokenFromRoot();
 
     const fetchedUsers = await api
@@ -22,7 +22,7 @@ describe('fetching users', () => {
     expect(names).not.toContain('root');
   });
 
-  test('fetch proper user with query', async () => {
+  it('fetch proper user with query', async () => {
     const token = await helper.getTokenFromRoot();
 
     const fetchedUser = await api
