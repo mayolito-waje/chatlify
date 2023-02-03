@@ -9,6 +9,7 @@ import {
   errorHandler,
 } from './utils/middlewares.js';
 import usersRouter from './routes/users.js';
+import loginRouter from './routes/login.js';
 import testingRouter from './routes/testing.js';
 
 const app = express();
@@ -21,13 +22,15 @@ app.use(helmet());
 app.use(extractToken);
 
 app.use('/api/users', usersRouter);
-app.get('/', (_req, res) => {
-  res.send('api running');
-});
+app.use('/api/login', loginRouter);
 
 if (process.env.NODE_ENV === 'test') {
   app.use('/api/testing', testingRouter);
 }
+
+app.get('/', (_req, res) => {
+  res.send('api running');
+});
 
 app.use(resourceNotFound);
 app.use(errorHandler);

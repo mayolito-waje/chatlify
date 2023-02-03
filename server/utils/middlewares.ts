@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import * as config from './config.js';
-import type { DecodedUser } from '../types/index.js';
+import type { DecodedUser } from '../types/users.js';
 
 export const extractToken = (
   req: Request,

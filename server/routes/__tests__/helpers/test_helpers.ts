@@ -46,7 +46,7 @@ export const seedUsers = async (): Promise<void> => {
 
 export const getTokenFromRoot = async (): Promise<string> => {
   const user = await api
-    .post('/api/users/login')
+    .post('/api/login')
     .send({
       email: 'root@example.com',
       password: 'secretPassword#00',
