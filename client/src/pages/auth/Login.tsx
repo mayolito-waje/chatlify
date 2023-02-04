@@ -29,6 +29,9 @@ function Login(): JSX.Element {
         <button type="submit" className="blue-button">
           Login
         </button>
+        <button type="button" className="red-button" style={{ marginTop: 10 }}>
+          Login as guest user
+        </button>
       </form>
     </div>
   );
