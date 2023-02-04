@@ -1,0 +1,18 @@
+@import-normalize;
+
+@font-face {
+  font-family: 'Dinosaur';
+  src: url('../public/fonts/Dinosaur.ttf') format('truetype');
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  background-image: url('../../public/images/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family: 'Lato', sans-serif;
+}

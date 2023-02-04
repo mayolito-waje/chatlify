@@ -1,0 +1,23 @@
+/* Color Pallette */
+$lavender-web: #eeeeff;
+$xiketic: #0d0106;
+$bdazzeled-blue: #28587b;
+$cadet-blue: #51a3a3;
+
+$base-font: 'Lato', sans-serif;
+
+.blue-button {
+  background-color: $cadet-blue;
+  padding: 10px 30px;
+  opacity: 50%;
+  color: $lavender-web;
+  border: none;
+  transition: opacity 0.5s;
+  font-family: $base-font;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.blue-button:hover {
+  opacity: 100%;
+}

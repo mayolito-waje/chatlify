@@ -1,0 +1,44 @@
+@use '../../styles/utils';
+
+.auth_logo {
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+.center-contents {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth_container {
+  background-color: utils.$lavender-web;
+  width: fit-content;
+  padding: 10px 50px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+
+  label {
+    margin-bottom: 10px;
+  }
+
+  input {
+    font-family: 'Lato', sans-serif;
+    border-style: solid;
+    border-width: 1px;
+    outline: none;
+    padding: 5px;
+    transition: all 0.5s;
+  }
+
+  input:hover,
+  input:focus {
+    outline-color: utils.$cadet-blue;
+    border-color: utils.$cadet-blue;
+  }
+}
