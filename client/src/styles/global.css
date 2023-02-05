@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: 'Dinosaur';
-  src: url('../public/fonts/Dinosaur.ttf') format('truetype');
+  src: url('/fonts/Dinosaur.ttf') format('truetype');
 }
 
 html {
@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  background-image: url('../../public/images/background.jpg');
+  background-image: url('/images/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
