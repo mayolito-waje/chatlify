@@ -1,4 +1,5 @@
-import Logo from '../../components/misc/Logo';
+import { Link } from 'react-router-dom';
+import Logo from '../../components/misc/logo/Logo';
 import './auth.scss';
 import '../../styles/utils.scss';
 
@@ -32,6 +33,10 @@ function Login(): JSX.Element {
         <button type="button" className="red-button" style={{ marginTop: 10 }}>
           Login as guest user
         </button>
+        <br />
+        <Link className="link" to="/auth/register">
+          New user? Click here to register.
+        </Link>
       </form>
     </div>
   );

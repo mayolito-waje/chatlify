@@ -4,7 +4,7 @@ import * as helper from './helpers/test_helpers.js';
 
 beforeEach(async () => {
   await helper.seedUsers();
-});
+}, 100000);
 
 describe('log in', () => {
   it('should successfully login with registered user', async () => {

@@ -11,6 +11,9 @@
     "lint:fix": "eslint --fix ."
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.7",
     "eslint-config-prettier": "^8.6.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.8.1",

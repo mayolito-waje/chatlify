@@ -17,6 +17,9 @@ $base-font: 'Lato', sans-serif;
   font-family: $base-font;
   font-size: 15px;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     opacity: 100%;
