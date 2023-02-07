@@ -1,15 +1,18 @@
 import { useState } from 'react';
 import type { FormEvent, FormEventHandler } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../components/misc/logo/Logo';
 import * as authService from '../../services/auth';
 import type { UserLogin } from '../../types/user';
 import './auth.scss';
 import '../../styles/utils.scss';
+import { AxiosError } from 'axios';
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>
@@ -21,8 +24,12 @@ function Login(): JSX.Element {
       const loggedUser = await authService.login(credential);
 
       window.localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+
+      navigate('/chat');
     } catch (error: any) {
-      console.log(error.response.data.error);
+      if (error instanceof AxiosError) {
+        console.log(error.response?.data.error);
+      }
     }
   };
 

@@ -2,6 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import cors from 'cors';
 import helmet from 'helmet';
+import morgan from 'morgan';
 import connectToMongoDB from './utils/db.js';
 import {
   extractToken,
@@ -16,6 +17,7 @@ const app = express();
 
 void connectToMongoDB();
 
+app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cors());
 app.use(helmet());

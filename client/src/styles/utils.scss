@@ -5,8 +5,10 @@ $bdazzeled-blue: #28587b;
 $cadet-blue: #51a3a3;
 $radical-red: #ff3864;
 
+/* Font */
 $base-font: 'Lato', sans-serif;
 
+/* Button */
 @mixin button-color($color: #51a3a3) {
   background-color: $color;
   padding: 10px 30px;
