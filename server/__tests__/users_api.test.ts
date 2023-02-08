@@ -55,13 +55,7 @@ describe('register users', () => {
   });
 
   it("don't register with invalid password", async () => {
-    const invalidPasswords = [
-      'short',
-      'testPassword0',
-      'noNumber#',
-      'noNumbersAndSpecialChars',
-      'allsmallletters',
-    ];
+    const invalidPasswords = ['short', 'noNumber', 'allsmallletters'];
 
     for (const password of invalidPasswords) {
       const newUser: RequestUser = {

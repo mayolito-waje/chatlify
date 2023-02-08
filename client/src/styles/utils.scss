@@ -9,8 +9,7 @@ $radical-red: #ff3864;
 $base-font: 'Lato', sans-serif;
 
 /* Button */
-@mixin button-color($color: #51a3a3) {
-  background-color: $color;
+@mixin default-button() {
   padding: 10px 30px;
   opacity: 50%;
   color: $lavender-web;
@@ -28,10 +27,16 @@ $base-font: 'Lato', sans-serif;
   }
 }
 
+.default-button {
+  @include default-button();
+}
+
 .blue-button {
-  @include button-color;
+  @include default-button();
+  background-color: $cadet-blue;
 }
 
 .red-button {
-  @include button-color($color: $radical-red);
+  @include default-button();
+  background-color: $radical-red;
 }

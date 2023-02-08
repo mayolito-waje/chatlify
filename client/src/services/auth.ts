@@ -1,7 +1,7 @@
 import axios from 'axios';
 import type { UserLogin, UserRegister } from '../types/user';
 
-const userUrl = '/api/user';
+const userUrl = '/api/users';
 const loginUrl = '/api/login';
 
 export const login = async (credentials: UserLogin): Promise<any> => {
