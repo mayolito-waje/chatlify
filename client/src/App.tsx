@@ -19,7 +19,16 @@ function App(): JSX.Element {
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/register" element={<Register />} />
         <Route path="/chat" element={<Chat />} />
-        <Route path="/" element={<Navigate replace to="/auth/login" />} />
+        <Route
+          path="/"
+          element={
+            window.localStorage.getItem('loggedUser') === null ? (
+              <Navigate replace to="/auth/login" />
+            ) : (
+              <Navigate replace to="/chat" />
+            )
+          }
+        />
       </Routes>
 
       <Notification />
