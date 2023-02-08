@@ -28,14 +28,13 @@ export const registerUser = async (
 ): Promise<any> => {
   const { name, email, picture, password }: RequestUser = req.body;
 
-  const validPasswordRegex: RegExp =
-    /^(?=.*[A-Z])(?=.*[@$!%*#?&])(?=.*[a-z])(?=.*\d).{8,}$/g;
+  const validPasswordRegex: RegExp = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/g;
   const isValidPassword = validPasswordRegex.test(password);
 
   if (!isValidPassword) {
     return res.status(400).json({
       error:
-        'password requirements: small, capital, and special letter, number, 8 characters long',
+        'password must have small letter, capital letter, number, and at least 8 characters long',
     });
   }
 

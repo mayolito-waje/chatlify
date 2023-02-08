@@ -72,7 +72,7 @@ describe('register users', () => {
 
       const result = await api.post('/api/users').send(newUser).expect(400);
       expect(result.body.error).toBe(
-        'password requirements: small, capital, and special letter, number, 8 characters long'
+        'password must have small letter, capital letter, number, and at least 8 characters long'
       );
     }
   });
