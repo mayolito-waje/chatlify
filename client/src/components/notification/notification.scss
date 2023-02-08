@@ -14,13 +14,13 @@
   border: 1px solid utils.$lavender-web;
   border-radius: 15px;
   font-size: 15px;
-  transition: display 0.5s;
+  transition: transform 0.5s;
 }
 
 .success {
-  @include notification($color: rgb(82, 194, 82));
+  @include notification($color: rgb(61, 129, 61));
 }
 
 .error {
-  @include notification($color: red);
+  @include notification($color: utils.$radical-red);
 }

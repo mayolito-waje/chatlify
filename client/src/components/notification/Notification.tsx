@@ -1,30 +1,25 @@
-import PropTypes, { type InferProps } from 'prop-types';
+import { useAppSelector } from '../../hooks/react-redux';
+import type { CSSProperties } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './notification.scss';
 
-const notificationType = (
-  props: any,
-  propName: string,
-  componentName: string
-): any => {
-  const types = ['success', 'error'];
+function Notification(): JSX.Element {
+  const { text, type } = useAppSelector((state) => state.notification);
 
-  if (!types.includes(props[propName])) {
-    return new Error(
-      `Invalid prop ${propName} passed to ${componentName}. Expected a valid notification type.`
-    );
-  }
-};
+  const style: CSSProperties = {
+    transform: text === '' ? 'scale(0)' : 'scale(1)',
+  };
 
-function Notification({
-  type,
-  text,
-}: InferProps<typeof Notification.propTypes>): JSX.Element {
-  return <div className={type as string}>{text as string}</div>;
+  return (
+    <div style={style} className={type}>
+      {type === 'success' ? (
+        <FontAwesomeIcon icon="check" />
+      ) : (
+        <FontAwesomeIcon icon="triangle-exclamation" />
+      )}{' '}
+      {text}
+    </div>
+  );
 }
-
-Notification.propTypes = {
-  type: notificationType,
-  text: PropTypes.string,
-};
 
 export default Notification;

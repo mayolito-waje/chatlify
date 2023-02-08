@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import type { FormEvent, FormEventHandler } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { handleNotification } from '../../reducers/notificationReducer';
+import { useAppDispatch } from '../../hooks/react-redux';
 import Logo from '../../components/misc/logo/Logo';
 import * as authService from '../../services/auth';
 import type { UserLogin } from '../../types/user';
@@ -12,6 +14,7 @@ function Login(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (
@@ -24,11 +27,18 @@ function Login(): JSX.Element {
       const loggedUser = await authService.login(credential);
 
       window.localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-
+      dispatch(
+        handleNotification(
+          `logged in as ${loggedUser.name as string}`,
+          'success'
+        )
+      );
       navigate('/chat');
     } catch (error: any) {
       if (error instanceof AxiosError) {
-        console.log(error.response?.data.error);
+        dispatch(
+          handleNotification(error.response?.data.error as string, 'error')
+        );
       }
     }
   };
