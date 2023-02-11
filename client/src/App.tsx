@@ -3,13 +3,14 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faTriangleExclamation,
   faCheck,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Chat from './pages/chat/Chat';
 import Notification from './components/notification/Notification';
 
-library.add(faTriangleExclamation, faCheck);
+library.add(faTriangleExclamation, faCheck, faUser);
 
 function App(): JSX.Element {
   return (
