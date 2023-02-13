@@ -5,14 +5,40 @@ import {
   faCheck,
   faUser,
 } from '@fortawesome/free-solid-svg-icons';
+import { useAppDispatch } from './hooks/react-redux';
+import { handleNotification } from './reducers/notificationReducer';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import Chat from './pages/chat/Chat';
 import Notification from './components/notification/Notification';
+import * as authService from './services/auth';
 
 library.add(faTriangleExclamation, faCheck, faUser);
 
 function App(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const loggedUser = window.localStorage.getItem('loggedUser');
+
+  if (loggedUser !== null) {
+    const { token } = JSON.parse(loggedUser);
+    authService.getToken(token);
+
+    void authService
+      .getLoggedUser()
+      .then((user) => {
+        dispatch(
+          handleNotification(`logged in as ${user.name as string}`, 'success')
+        );
+      })
+      .catch(() => {
+        window.localStorage.removeItem('loggedUser');
+        dispatch(
+          handleNotification('token expired, please log-in again', 'error')
+        );
+      });
+  }
+
   return (
     <div>
       <Routes>
@@ -23,7 +49,7 @@ function App(): JSX.Element {
         <Route
           path="/"
           element={
-            window.localStorage.getItem('loggedUser') === null ? (
+            loggedUser === null ? (
               <Navigate replace to="/auth/login" />
             ) : (
               <Navigate replace to="/chat" />

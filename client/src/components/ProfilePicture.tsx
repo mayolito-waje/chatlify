@@ -13,16 +13,20 @@ function ProfilePicture({
   const [loading, setLoading] = useState(true);
 
   const fetchImg = async (): Promise<void> => {
-    const res = await fetch(link);
-    const blob = await res.blob();
-    const objectURL = URL.createObjectURL(blob);
-    setImg(objectURL);
-    setLoading(false);
+    try {
+      const res = await fetch(link);
+      const blob = await res.blob();
+      const objectURL = URL.createObjectURL(blob);
+      setImg(objectURL);
+      if (img !== '') setLoading(false);
+    } catch (error) {
+      setLoading(true);
+    }
   };
 
   useEffect(() => {
     void fetchImg();
-  }, []);
+  }, [img]);
 
   const imgStyle: CSSProperties = {
     borderRadius: '50%',

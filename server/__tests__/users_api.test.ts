@@ -85,6 +85,20 @@ describe('register users', () => {
   });
 });
 
+describe('get logged user', () => {
+  it('successfully get logged user', async () => {
+    const token = await helper.getTokenFromRoot();
+
+    const loggedUser = await api
+      .get('/api/users/@me')
+      .auth(token, { type: 'bearer' })
+      .expect(200);
+
+    expect(loggedUser.body.name).toBe('root');
+    expect(loggedUser.body.email).toBe('root@example.com');
+  });
+});
+
 afterAll(() => {
   void mongoose.connection.close();
 });

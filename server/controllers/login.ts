@@ -28,7 +28,7 @@ export const loginUser = async (req: Request, res: Response): Promise<any> => {
       email: user?.email,
     },
     config.JWT_SECRET as 'Secret',
-    { expiresIn: '30d' }
+    { expiresIn: '1d' }
   );
 
   return res.json({

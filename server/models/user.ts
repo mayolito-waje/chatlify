@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import * as config from '../utils/config.js';
 
 const userSchema = new mongoose.Schema(
   {
@@ -18,8 +19,7 @@ const userSchema = new mongoose.Schema(
     picture: {
       type: String,
       required: true,
-      default:
-        'https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg',
+      default: config.DEFAULT_PIC_URL,
     },
     interests: [
       {

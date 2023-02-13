@@ -30,3 +30,12 @@ export const getUsers = async (): Promise<any> => {
   });
   return result.data;
 };
+
+export const getLoggedUser = async (): Promise<any> => {
+  const result = await axios.get(userUrl + '/@me', {
+    headers: {
+      Authorization: token,
+    },
+  });
+  return result.data;
+};

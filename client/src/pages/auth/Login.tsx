@@ -27,6 +27,7 @@ function Login(): JSX.Element {
       const loggedUser = await authService.login(credential);
 
       window.localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+      authService.getToken(loggedUser.token);
       dispatch(
         handleNotification(
           `logged in as ${loggedUser.name as string}`,

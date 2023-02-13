@@ -66,6 +66,7 @@ function Register(): JSX.Element {
       await authService.createUser(newUser);
 
       const loggedIn = await authService.login({ email, password });
+      authService.getToken(loggedIn.token);
       window.localStorage.setItem('loggedUser', JSON.stringify(loggedIn));
       dispatch(handleNotification(`registered as ${name}`, 'success'));
 

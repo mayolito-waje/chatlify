@@ -46,3 +46,12 @@ export const registerUser = async (
 
   res.status(201).json(createdUser);
 };
+
+export const getLoggedUser = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { id } = req.user;
+  const loggedUser = await User.findById(id);
+  res.json(loggedUser);
+};
