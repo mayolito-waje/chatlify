@@ -30,8 +30,8 @@ function ProfilePicture({
 
   const imgStyle: CSSProperties = {
     borderRadius: '50%',
-    width: size as number,
-    height: size as number,
+    width: size as number | string,
+    height: size as number | string,
     backgroundColor: '#cdcdb1',
   };
 
@@ -63,7 +63,7 @@ function ProfilePicture({
 }
 
 ProfilePicture.propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   link: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
