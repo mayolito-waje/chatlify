@@ -5,10 +5,15 @@ $bdazzeled-blue: #28587b;
 $cadet-blue: #51a3a3;
 $radical-red: #ff3864;
 
-$color-username: #0040ff;
+$color-header: #0040ff;
+$color-sentence: #424242;
+
+$color-side-panel: #d7d7db;
 
 /* Font */
 $base-font: 'Lato', sans-serif;
+$header-font: 18px;
+$sentence-font: 12px;
 
 /* Button */
 @mixin default-button() {

@@ -1,1 +1,25 @@
 @use '../../../styles/utils';
+
+.main-user-container {
+  display: flex;
+  align-items: center;
+}
+
+.logged-user-details {
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: column;
+  line-height: 0;
+
+  .name {
+    font-size: utils.$header-font;
+    color: utils.$color-header;
+  }
+
+  .email {
+    font-size: utils.$sentence-font;
+    color: utils.$color-sentence;
+  }
+}

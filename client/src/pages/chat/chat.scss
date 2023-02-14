@@ -3,10 +3,9 @@
 .chat {
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: 25% 50% 25%;
+  grid-template-columns: 2.5fr 5fr 2.5fr;
   background-color: utils.$lavender-web;
   height: 95vh;
   width: 200vh;
   border-radius: 15px;
-  padding: 15px;
 }

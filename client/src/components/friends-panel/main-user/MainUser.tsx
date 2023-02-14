@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import ProfilePicture from '../../ProfilePicture';
 import * as authService from '../../../services/auth';
+import './main-user.scss';
 
 function MainUser(): JSX.Element {
   const [profilePicUrl, setProfilePicUrl] = useState('');
@@ -24,7 +25,7 @@ function MainUser(): JSX.Element {
   }, []);
 
   return (
-    <div>
+    <div className="main-user-container">
       <ProfilePicture size={50} link={profilePicUrl} name={name} />
       <div className="logged-user-details">
         <h3 className="name">{name}</h3>
