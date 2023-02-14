@@ -1,0 +1,26 @@
+@use '../../../styles/utils';
+
+.search-bar {
+  background-color: utils.$lavender-web;
+  color: gray;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 50px;
+
+  .search-icon {
+    margin-left: 5px;
+  }
+
+  input {
+    background-color: utils.$lavender-web;
+    color: utils.$color-sentence;
+    border: none;
+    margin-left: 15px;
+
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}

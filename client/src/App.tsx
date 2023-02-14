@@ -4,6 +4,7 @@ import {
   faTriangleExclamation,
   faCheck,
   faUser,
+  faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 import { useAppDispatch } from './hooks/react-redux';
 import { handleNotification } from './reducers/notificationReducer';
@@ -13,7 +14,7 @@ import Chat from './pages/chat/Chat';
 import Notification from './components/notification/Notification';
 import * as authService from './services/auth';
 
-library.add(faTriangleExclamation, faCheck, faUser);
+library.add(faTriangleExclamation, faCheck, faUser, faMagnifyingGlass);
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
