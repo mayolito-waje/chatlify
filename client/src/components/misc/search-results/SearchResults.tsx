@@ -9,7 +9,7 @@ function SearchResults({
 }: InferProps<typeof SearchResults.propTypes>): JSX.Element {
   return (
     <ul className={`search-results__container ${className as string}`}>
-      {users.map((user) => {
+      {users.slice(0, 5).map((user) => {
         return (
           <li key={user?.id} className="search-results__list-item">
             <ProfilePicture
