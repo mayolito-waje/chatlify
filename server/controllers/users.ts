@@ -12,9 +12,11 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
         }
       : {};
 
-  const users = await User.find(keyword).find({
-    _id: { $ne: new mongoose.Types.ObjectId(req.user.id) },
-  });
+  const users = await User.find(keyword)
+    .find({
+      _id: { $ne: new mongoose.Types.ObjectId(req.user.id) },
+    })
+    .sort({ name: 1, email: 1, createdAt: 1, updatedAt: 1 });
 
   res.json(users);
 };
