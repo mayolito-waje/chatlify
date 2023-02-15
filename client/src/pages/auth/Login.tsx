@@ -3,12 +3,13 @@ import type { FormEvent, FormEventHandler } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { handleNotification } from '../../reducers/notificationReducer';
 import { useAppDispatch } from '../../hooks/react-redux';
+import PasswordInput from '../../components/misc/password-input/PasswordInput';
 import Logo from '../../components/misc/logo/Logo';
 import * as authService from '../../services/auth';
 import type { UserLogin } from '../../types/user';
+import { AxiosError } from 'axios';
 import './auth.scss';
 import '../../styles/utils.scss';
-import { AxiosError } from 'axios';
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState('');
@@ -67,12 +68,10 @@ function Login(): JSX.Element {
         />
         <br />
         <label htmlFor="login_password">Password: </label>
-        <input
-          type="password"
+        <PasswordInput
+          password={password}
           name="login_password"
-          id="login_password"
           placeholder="your password..."
-          value={password}
           onChange={({ target }) => {
             setPassword(target.value);
           }}

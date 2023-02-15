@@ -6,6 +6,7 @@ import { CircularProgress } from '@mui/material';
 import * as authService from '../../services/auth';
 import axios, { AxiosError } from 'axios';
 import Logo from '../../components/misc/logo/Logo';
+import PasswordInput from '../../components/misc/password-input/PasswordInput';
 import type { FormEvent, FormEventHandler } from 'react';
 import type { UserRegister } from '../../types/user';
 import './auth.scss';
@@ -115,24 +116,20 @@ function Register(): JSX.Element {
         />
         <br />
         <label htmlFor="register_password">Password: </label>
-        <input
-          type="password"
+        <PasswordInput
+          password={password}
           name="register_password"
-          id="register_password"
           placeholder="your password..."
-          value={password}
           onChange={({ target }) => {
             setPassword(target.value);
           }}
         />
         <br />
         <label htmlFor="register_confirm-password">Confirm Password:</label>
-        <input
-          type="password"
+        <PasswordInput
+          password={confirmPassword}
           name="register_confirm-password"
-          id="register_confirm-password"
           placeholder="confirm password..."
-          value={confirmPassword}
           onChange={({ target }) => {
             setConfirmPassword(target.value);
           }}

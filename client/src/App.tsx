@@ -1,11 +1,4 @@
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-  faTriangleExclamation,
-  faCheck,
-  faUser,
-  faMagnifyingGlass,
-} from '@fortawesome/free-solid-svg-icons';
 import { useAppDispatch } from './hooks/react-redux';
 import { handleNotification } from './reducers/notificationReducer';
 import Login from './pages/auth/Login';
@@ -13,8 +6,9 @@ import Register from './pages/auth/Register';
 import Chat from './pages/chat/Chat';
 import Notification from './components/notification/Notification';
 import * as authService from './services/auth';
+import setUpFontAwesomeIcons from './font-awesome';
 
-library.add(faTriangleExclamation, faCheck, faUser, faMagnifyingGlass);
+setUpFontAwesomeIcons();
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
