@@ -8,10 +8,7 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
   const keyword =
     req.query.search !== undefined
       ? {
-          $or: [
-            { name: { $regex: req.query.search, $options: 'i' } },
-            { email: { $regex: req.query.search, $options: 'i' } },
-          ],
+          name: { $regex: req.query.search, $options: 'i' },
         }
       : {};
 

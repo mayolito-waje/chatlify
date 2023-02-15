@@ -1,0 +1,25 @@
+@use '../../../styles/utils';
+
+.search-results__container {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 15px;
+  background-color: utils.$lavender-web;
+}
+
+.search-results__list-item {
+  border-bottom: 1px solid utils.$color-side-panel;
+  display: flex;
+  padding: 5px;
+  transition: color 0.3s;
+
+  img {
+    margin-right: 20px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: utils.$color-side-panel;
+  }
+}
