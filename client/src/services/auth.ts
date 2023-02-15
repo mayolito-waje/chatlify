@@ -1,14 +1,9 @@
 import axios from 'axios';
 import type { UserLogin, UserRegister } from '../types/user';
+import getToken from './fetch-token';
 
 const userUrl = '/api/users';
 const loginUrl = '/api/login';
-
-let token: string;
-
-export const getToken = (setToken: string): void => {
-  token = `bearer ${setToken}`;
-};
 
 export const login = async (credentials: UserLogin): Promise<any> => {
   const result = await axios.post(loginUrl, credentials);
@@ -25,7 +20,7 @@ export const createUser = async (
 export const getUsers = async (): Promise<any> => {
   const result = await axios.get(userUrl, {
     headers: {
-      Authorization: token,
+      Authorization: getToken(),
     },
   });
   return result.data;
@@ -34,7 +29,7 @@ export const getUsers = async (): Promise<any> => {
 export const getLoggedUser = async (): Promise<any> => {
   const result = await axios.get(userUrl + '/@me', {
     headers: {
-      Authorization: token,
+      Authorization: getToken(),
     },
   });
   return result.data;

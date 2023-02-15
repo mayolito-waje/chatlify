@@ -17,9 +17,6 @@ function App(): JSX.Element {
   const loggedUser = window.localStorage.getItem('loggedUser');
 
   if (loggedUser !== null) {
-    const { token } = JSON.parse(loggedUser);
-    authService.getToken(token);
-
     void authService
       .getLoggedUser()
       .then((user) => {
@@ -30,7 +27,10 @@ function App(): JSX.Element {
       .catch(() => {
         window.localStorage.removeItem('loggedUser');
         dispatch(
-          handleNotification('token expired, please log-in again', 'error')
+          handleNotification(
+            'token expired or invalid, please log-in again',
+            'error'
+          )
         );
         navigate('/auth/login');
       });

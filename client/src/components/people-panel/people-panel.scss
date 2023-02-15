@@ -1,0 +1,12 @@
+@use '../../styles/utils';
+
+.people-panel {
+  background-color: utils.$color-side-panel;
+  padding: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.people-panel__search-bar {
+  margin: 15px 0;
+}

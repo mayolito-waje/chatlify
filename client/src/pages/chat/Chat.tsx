@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../hooks/react-redux';
 import { handleNotification } from '../../reducers/notificationReducer';
 import FriendsPanel from '../../components/friends-panel/FriendsPanel';
+import PeoplePanel from '../../components/people-panel/PeoplePanel';
 import './chat.scss';
 
 function Chat(): JSX.Element {
@@ -21,7 +22,7 @@ function Chat(): JSX.Element {
     <div className="chat">
       <FriendsPanel />
       <div className="main-panel"></div>
-      <div className="people-panel"></div>
+      <PeoplePanel />
     </div>
   );
 }
