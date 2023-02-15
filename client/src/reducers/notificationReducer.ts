@@ -5,7 +5,7 @@ import type { RootState } from '../store';
 
 interface notificationState {
   text: string;
-  type: string;
+  type: 'success' | 'error' | '';
 }
 
 const initialState: notificationState = {
@@ -21,7 +21,7 @@ const notificationSlice = createSlice({
       state.text = action.payload;
     },
     setType(state, action: PayloadAction<string>) {
-      state.type = action.payload;
+      state.type = action.payload as 'success' | 'error';
     },
     removeNotification(state) {
       state.text = '';
@@ -38,7 +38,7 @@ let timeoutID: string | number | NodeJS.Timeout | undefined;
 export const handleNotification =
   (
     text: string,
-    type: string
+    type: 'success' | 'error'
   ): ThunkAction<void, RootState, unknown, AnyAction> =>
   async (dispatch): Promise<void> => {
     clearTimeout(timeoutID);

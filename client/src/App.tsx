@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faTriangleExclamation,
@@ -18,6 +18,7 @@ library.add(faTriangleExclamation, faCheck, faUser, faMagnifyingGlass);
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const loggedUser = window.localStorage.getItem('loggedUser');
 
@@ -37,6 +38,7 @@ function App(): JSX.Element {
         dispatch(
           handleNotification('token expired, please log-in again', 'error')
         );
+        navigate('/auth/login');
       });
   }
 
