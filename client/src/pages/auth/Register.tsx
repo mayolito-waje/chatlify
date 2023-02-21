@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useAppDispatch } from '../../hooks/react-redux';
 import { handleNotification } from '../../reducers/notificationReducer';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
-import * as authService from '../../services/auth';
-import axios, { AxiosError } from 'axios';
+import useAuth from '../../hooks/auth';
+import axios from 'axios';
 import Logo from '../../components/misc/logo/Logo';
 import PasswordInput from '../../components/misc/password-input/PasswordInput';
 import type { FormEvent, FormEventHandler } from 'react';
@@ -21,7 +21,7 @@ function Register(): JSX.Element {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const auth = useAuth();
 
   const handlePicture = async (pics: File): Promise<any> => {
     setLoading(true);
@@ -62,22 +62,7 @@ function Register(): JSX.Element {
     }
 
     const newUser: UserRegister = { name, email, password, picture };
-
-    try {
-      await authService.createUser(newUser);
-
-      const loggedIn = await authService.login({ email, password });
-      window.localStorage.setItem('loggedUser', JSON.stringify(loggedIn));
-      dispatch(handleNotification(`registered as ${name}`, 'success'));
-
-      navigate('/chat');
-    } catch (error: any) {
-      if (error instanceof AxiosError) {
-        dispatch(
-          handleNotification(error.response?.data.error as string, 'error')
-        );
-      }
-    }
+    await auth.register(newUser);
   };
 
   return (
