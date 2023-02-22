@@ -6,6 +6,7 @@ import {
   faMagnifyingGlass,
   faEye,
   faEyeSlash,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons';
 
 const setUpFontAwesomeIcons = (): void => {
@@ -15,7 +16,8 @@ const setUpFontAwesomeIcons = (): void => {
     faUser,
     faMagnifyingGlass,
     faEye,
-    faEyeSlash
+    faEyeSlash,
+    faComment
   );
 };
 

@@ -54,7 +54,13 @@ export const getTokenFromRoot = async (): Promise<string> => {
   return token;
 };
 
-export const usersInDB = async (): Promise<any> => {
+export const usersInDB = async (): Promise<any[]> => {
   const users = await User.find({});
   return users.map((user) => user.toJSON());
+};
+
+export const getRootId = async (): Promise<string> => {
+  const users = await usersInDB();
+  const { id } = users.find((user) => user.email === 'root@example.com');
+  return id as string;
 };

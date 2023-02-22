@@ -34,6 +34,19 @@ describe('fetching users', () => {
     expect(fetchedUser.body[0].name).toBe('user1');
   });
 
+  it('fetch user with user id', async () => {
+    const token = await helper.getTokenFromRoot();
+    const mongoId = await helper.getRootId();
+
+    const fetchedUser = await api
+      .get('/api/users/' + mongoId)
+      .auth(token, { type: 'bearer' })
+      .expect(200);
+
+    expect(fetchedUser.body.name).toBe('root');
+    expect(fetchedUser.body.email).toBe('root@example.com');
+  });
+
   it('should prohibit viewing users if not logged in', async () => {
     const response = await api.get('/api/users/').expect(401);
     expect(response.body.error).toBe('token is missing');

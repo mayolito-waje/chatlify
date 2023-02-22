@@ -12,3 +12,13 @@ export const searchUsers = async (query: string): Promise<any> => {
 
   return result.data;
 };
+
+export const fetchById = async (id: string): Promise<any> => {
+  const result = await axios.get(`${url}/${id}`, {
+    headers: {
+      Authorization: getToken(),
+    },
+  });
+
+  return result.data;
+};

@@ -21,6 +21,15 @@ export const getUsers = async (req: Request, res: Response): Promise<void> => {
   res.json(users);
 };
 
+export const fetchUserById = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { id } = req.params;
+  const fetchedUser = await User.findById(id);
+  res.json(fetchedUser);
+};
+
 export const registerUser = async (
   req: Request,
   res: Response

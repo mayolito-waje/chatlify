@@ -1,17 +1,24 @@
 import PropTypes from 'prop-types';
 import type { InferProps } from 'prop-types';
+import type { MouseEventHandler } from 'react';
 import ProfilePicture from '../../ProfilePicture';
 import './search-results.scss';
 
 function SearchResults({
   users,
   className,
+  onClick,
 }: InferProps<typeof SearchResults.propTypes>): JSX.Element {
   return (
     <ul className={`search-results__container ${className as string}`}>
       {users.slice(0, 5).map((user) => {
         return (
-          <li key={user?.id} className="search-results__list-item">
+          <li
+            key={user?.id}
+            className="search-results__list-item"
+            data-id={user?.id}
+            onClick={onClick as MouseEventHandler<HTMLLIElement>}
+          >
             <ProfilePicture
               size={20}
               link={user?.picture as string}
@@ -34,6 +41,7 @@ SearchResults.propTypes = {
     })
   ).isRequired,
   className: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default SearchResults;
