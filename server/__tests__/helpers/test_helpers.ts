@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import User from '../../models/user.js';
+import Chat from '../../models/chat.js';
 import api from './api.js';
 
 export const users = [
@@ -63,4 +64,22 @@ export const getRootId = async (): Promise<string> => {
   const users = await usersInDB();
   const { id } = users.find((user) => user.email === 'root@example.com');
   return id as string;
+};
+
+export const createChat = async (): Promise<{ targetUserId: string }> => {
+  await Chat.deleteMany({});
+
+  const token = await getTokenFromRoot();
+
+  const targetUserId: string = (await usersInDB()).find(
+    ({ email }) => email === 'user1@example.com'
+  ).id;
+
+  await api
+    .post(`/api/chats/create?user=${targetUserId}`)
+    .auth(token, { type: 'bearer' });
+
+  return {
+    targetUserId,
+  };
 };

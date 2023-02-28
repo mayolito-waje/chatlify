@@ -11,6 +11,7 @@ import {
 } from './utils/middlewares.js';
 import usersRouter from './routes/users.js';
 import loginRouter from './routes/login.js';
+import chatRouter from './routes/chats.js';
 import testingRouter from './routes/testing.js';
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(extractToken);
 
 app.use('/api/users', usersRouter);
 app.use('/api/login', loginRouter);
+app.use('/api/chats', chatRouter);
 
 if (process.env.NODE_ENV === 'test') {
   app.use('/api/testing', testingRouter);
