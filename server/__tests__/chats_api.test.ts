@@ -7,6 +7,23 @@ beforeEach(async () => {
   await helper.seedUsers();
 }, 100000);
 
+describe('fetching chat', () => {
+  it('fetch chat with available id', async () => {
+    const token = await helper.getTokenFromRoot();
+
+    const loggedUserId = await helper.getRootId();
+    const { id, chatPartnerId } = await helper.createChat();
+
+    const result = await api
+      .get(`/api/chats/${id}`)
+      .auth(token, { type: 'bearer' })
+      .expect(200);
+
+    expect(result.body.users).toContain(loggedUserId);
+    expect(result.body.users).toContain(chatPartnerId);
+  });
+});
+
 describe('creating chat', () => {
   it('should create non group chat', async () => {
     const token = await helper.getTokenFromRoot();
@@ -40,21 +57,21 @@ describe('searching chat', () => {
     const token = await helper.getTokenFromRoot();
 
     const loggedUserId = await helper.getRootId();
-    const { targetUserId } = await helper.createChat();
+    const { chatPartnerId } = await helper.createChat();
 
     const result = await api
-      .get(`/api/chats/search?user=${targetUserId}`)
+      .get(`/api/chats/search?user=${chatPartnerId}`)
       .auth(token, { type: 'bearer' })
       .expect(200);
 
     expect(result.body.users).toContain(loggedUserId);
-    expect(result.body.users).toContain(targetUserId);
+    expect(result.body.users).toContain(chatPartnerId);
   });
 
   it('should return error if there is no found user', async () => {
     const token = await helper.getTokenFromRoot();
 
-    const unavailableTargetId = '507f1f77bcf86cd799439011';
+    const unavailableTargetId: string = '507f1f77bcf86cd799439011';
 
     const result = await api
       .get(`/api/chats/search?user=${unavailableTargetId}`)

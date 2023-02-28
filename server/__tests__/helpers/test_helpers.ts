@@ -66,20 +66,24 @@ export const getRootId = async (): Promise<string> => {
   return id as string;
 };
 
-export const createChat = async (): Promise<{ targetUserId: string }> => {
+export const createChat = async (): Promise<{
+  chatPartnerId: string;
+  id: string;
+}> => {
   await Chat.deleteMany({});
 
   const token = await getTokenFromRoot();
 
-  const targetUserId: string = (await usersInDB()).find(
+  const chatPartnerId: string = (await usersInDB()).find(
     ({ email }) => email === 'user1@example.com'
   ).id;
 
-  await api
-    .post(`/api/chats/create?user=${targetUserId}`)
+  const createdChat = await api
+    .post(`/api/chats/create?user=${chatPartnerId}`)
     .auth(token, { type: 'bearer' });
 
   return {
-    targetUserId,
+    chatPartnerId,
+    id: createdChat.body.id,
   };
 };

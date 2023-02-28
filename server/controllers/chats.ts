@@ -1,7 +1,23 @@
 import mongoose from 'mongoose';
-import type { Request, Response } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import _ from 'lodash';
 import Chat from '../models/chat.js';
+
+export const getChat = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const { id } = req.params;
+
+  const requestChat = await Chat.findById(id);
+  if (_.isNull(requestChat)) {
+    next();
+    return;
+  }
+
+  res.json(requestChat);
+};
 
 export const searchChat = async (
   req: Request,
